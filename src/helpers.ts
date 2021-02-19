@@ -1,4 +1,6 @@
-export let copyToClipboard = (text) => {
+import { format, getWeeksInMonth, startOfWeek, isSameMonth, addDays } from 'date-fns'
+
+export const copyToClipboard = (text) => {
     if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
         var textarea = document.createElement("textarea");
         textarea.textContent = text;
@@ -14,4 +16,26 @@ export let copyToClipboard = (text) => {
             document.body.removeChild(textarea);
         }
     }
+}
+
+export const buildCalendarMonth = (month, year, dateFormat, firstDayOfTheWeek) => {
+    let weeksInMonth = getWeeksInMonth(new Date(year, month), { weekStartsOn: firstDayOfTheWeek })
+    let currentDay = startOfWeek(new Date(year, month), { weekStartsOn: firstDayOfTheWeek })
+    let result = `<table><thead><tr>${(firstDayOfTheWeek === 1 ? '' : '<th>Sun</th>')}<th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th>${(firstDayOfTheWeek === 1 ? '<th>Sun</th>' : '')}</tr></thead><tbody>`
+    for (let i = 1; i <= weeksInMonth; i++) {
+        result += '<tr>'
+        for (let j = 0; j < 7; j++) {
+            result += `${isSameMonth(currentDay, new Date(year, month, 1)) ? '<td>' : '<td class="outofmonth">'}<a data-ref="${format(currentDay, dateFormat)}" href="#/page/${format(currentDay, dateFormat)}" class="page-ref">${format(currentDay, 'd')}</a></td>`
+            currentDay = addDays(currentDay, 1)
+        }
+        result += '</tr>'
+    }
+    return `
+<div class="logseq-tools-calendar"><h2>${format(new Date(year, month, 1), 'MMMM')} ${year}</h2>
+${result}</tbody></table>
+`
+}
+
+export const buildCalendarMonths = (startDate, endDate, dateFormat, firstDayOfTheWeek) => {
+    
 }
