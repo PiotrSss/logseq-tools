@@ -1,4 +1,4 @@
-import { format, getWeeksInMonth, startOfWeek, isSameMonth, addDays } from 'date-fns'
+import { format, getWeeksInMonth, startOfWeek, isSameMonth, addDays, addMonths } from 'date-fns'
 
 export const copyToClipboard = (text) => {
     if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
@@ -32,10 +32,16 @@ export const buildCalendarMonth = (month, year, dateFormat, firstDayOfTheWeek) =
     }
     return `
 <div class="logseq-tools-calendar"><h2>${format(new Date(year, month, 1), 'MMMM')} ${year}</h2>
-${result}</tbody></table>
+${result}</tbody></table></div>
 `
 }
 
 export const buildCalendarMonths = (startDate, endDate, dateFormat, firstDayOfTheWeek) => {
-    
+    let result = ''
+    endDate = addMonths(endDate, 1)
+    while (!isSameMonth(startDate, endDate)) {
+        result += buildCalendarMonth(startDate.getMonth(), startDate.getFullYear(), dateFormat, firstDayOfTheWeek)
+        startDate = addMonths(startDate, 1)
+    }
+    return `<div class="logseq-tools-multiple-calendars">${result}</div>`
 }
