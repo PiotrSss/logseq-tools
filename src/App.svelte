@@ -22,7 +22,10 @@
 						<a class="nav-link" aria-current="page" href="/mini-calendar" use:active>Mini Calendar</a>
 					</li>
 					<li class="nav-item mx-2">
-						<a class="nav-link" href="/bujo" use:active>BuJo Themes Configurator</a>
+						<a class="nav-link" href="/bujo-theme" use:active>BuJo Themes</a>
+					</li>
+					<li class="nav-item mx-2">
+						<a class="nav-link" href="/clean-theme" use:active>Clean Themes</a>
 					</li>
 				</ul>
 			</div>
@@ -36,11 +39,18 @@
 			<Route path="/mini-calendar">
 				<MiniCalendar />
 			</Route>
-			<Route path="/bujo">
+			<Route path="/bujo-theme">
 				BuJo
+			</Route>
+			<Route path="/clean-theme">
+				Clean
 			</Route>
 		</Transition>
 	</main>
+
+	<footer>
+		If you'd like to support my work: <a href="https://paypal.me/piotrsss">https://paypal.me/piotrsss</a> :)
+	</footer>
 
 </div>
 
@@ -48,8 +58,7 @@
 	header {
 		text-align: center;
 		padding: 20px;
-		/* max-width: 240px; */
-		margin: 0 auto;
+		/* margin: 0 auto; */
 	}
 
 	h1 {
@@ -59,5 +68,10 @@
 	}
 	h1 a {
 		color: #ff3e00;
+	}
+
+	footer {
+		border-top: 1px solid #d5d5d5;
+		padding: 20px 10px;
 	}
 </style>

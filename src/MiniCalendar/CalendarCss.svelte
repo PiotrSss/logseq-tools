@@ -75,7 +75,7 @@
 
 <p>To make your calendar prettier, add this to your css file:</p>
 <div class="css-to-copy d-grid gap-1">
-    <button type="button" class="btn btn-outline-success mb-3" on:click={copy}>
+    <button type="button" class="btn btn-info mb-3" on:click={copy}>
         {#if copied}
             <span>🎉 Copied! Now you can paste it to your css file</span>
         {:else}

@@ -16,7 +16,7 @@
 
 <div class="d-grid gap-2 mini-calendar-output-wrapper py-4 px-4">
             
-    <button type="button" class="btn btn-outline-success mb-3" on:click={copy}>
+    <button type="button" class="btn btn-info mb-3" on:click={copy}>
         {#if copied}
             <span>🎉 Copied! Now you can paste it somewhere in your Logseq</span>
         {:else}
