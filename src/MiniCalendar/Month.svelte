@@ -1,6 +1,8 @@
 <script>
     import { createEventDispatcher } from "svelte"
     import { copyToClipboard, buildCalendarMonth } from '../helpers.ts'
+    import CalendarCss from './CalendarCss.svelte'
+    import Output from './Output.svelte'
     import FirstDayOfTheWeek from './FirstDayOfTheWeek.svelte'
     import DateFormat from './DateFormat.svelte'
 
@@ -16,7 +18,7 @@
         dispatch('dateFormatChange', { dateFormat })
         updateCalendarHtml()
     }
-
+    
 	const onFirstDayOfTheWeekChange = (event) => {
         firstDayOfTheWeek = event.detail.firstDayOfTheWeek
 		dispatch("firstDayOfTheWeekChange", { firstDayOfTheWeek })
@@ -40,19 +42,62 @@
         calendarHtml = buildCalendarMonth(month - 1, year, dateFormat, firstDayOfTheWeek)
     }
     
-    const copy = () => copyToClipboard(buildCalendarMonth(month - 1, year, dateFormat, firstDayOfTheWeek))
+    const onCopyButtonClick = () => {
+        copyToClipboard(buildCalendarMonth(month - 1, year, dateFormat, firstDayOfTheWeek))
+    }
+    
 </script>
 
-<p>Month:</p>
-<input bind:value={month} type=number min=1 max=12 on:change={onMonthChange} />
 
-<p>Year:</p>
-<input bind:value={year} type=number min=1971 max=2050>
 
-<FirstDayOfTheWeek {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} />
+<div class="col-xs-12 col-md-6">
 
-<DateFormat {dateFormat} on:dateFormatChange={onDateFormatChange} />
+    <form class="my-3 mx-3">
 
-<code>{@html calendarHtml}</code>
+        <div class="row">
 
-<button on:click={copy}>Copy</button>
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="month" class="col-form-label">Month:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input id="month" class="form-control" bind:value={month} type=number min=1 max=12 on:change={onMonthChange}>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <FirstDayOfTheWeek {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} />
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="year" class="col-form-label">Year:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input id="year" class="form-control" bind:value={year} type=number min=1971 max=2050>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <DateFormat {dateFormat} on:dateFormatChange={onDateFormatChange} />
+            </div>
+
+        </div>
+
+    </form>
+
+    <hr>
+
+    <CalendarCss />
+
+</div>
+
+<div class="col-xs-12 col-md-6">
+
+    <Output {calendarHtml} on:click={onCopyButtonClick} />
+
+</div>

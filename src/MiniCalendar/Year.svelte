@@ -1,6 +1,8 @@
 <script>
     import { createEventDispatcher } from "svelte"
     import { copyToClipboard, buildCalendarMonths } from '../helpers.ts'
+    import CalendarCss from './CalendarCss.svelte'
+    import Output from './Output.svelte'
     import FirstDayOfTheWeek from './FirstDayOfTheWeek.svelte'
     import DateFormat from './DateFormat.svelte'
 
@@ -29,16 +31,51 @@
         updateCalendarHtml()
     }
 
-    const copy = () => copyToClipboard(buildCalendarMonths(new Date(year, 0, 1), new Date(year, 11, 1), dateFormat, firstDayOfTheWeek))
+    const onCopyButtonClick = () => {
+        copyToClipboard(buildCalendarMonth(month - 1, year, dateFormat, firstDayOfTheWeek))
+    }
 
 </script>
 
-<FirstDayOfTheWeek {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} />
+<div class="col-xs-12 col-md-6">
 
-<DateFormat {dateFormat} on:dateFormatChange={onDateFormatChange} />
+    <form class="my-3 mx-3">
 
-<input bind:value={year} type=number min=1971 max=2050 on:change={onYearChange} />
+        <div class="row">
 
-<code>{@html calendarHtml}</code>
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="year" class="col-form-label">Year:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input id="year" class="form-control" bind:value={year} type=number min=1971 max=2050 on:change={onYearChange}>
+                    </div>
+                </div>
+            </div>
 
-<button on:click={copy}>Copy</button>
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <FirstDayOfTheWeek {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} />
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2"></div>
+
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <DateFormat {dateFormat} on:dateFormatChange={onDateFormatChange} />
+            </div>
+
+        </div>
+
+    </form>
+
+    <hr>
+
+    <CalendarCss />
+
+</div>
+
+<div class="col-xs-12 col-md-6">
+
+    <Output {calendarHtml} on:click={onCopyButtonClick} />
+
+</div>

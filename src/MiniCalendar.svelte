@@ -23,21 +23,36 @@
 
 </script>
 
-<p>I want to get...</p>
-<ul>
-    <li on:click={() => onCalendarOptionChange('month')}>a month</li>
-    <li on:click={() => onCalendarOptionChange('multiple months')}>multiple months</li>
-    <li on:click={() => onCalendarOptionChange('year')}>a year</li>
-</ul>
+<div class="container">
 
-{#if calendarOption === 'month'}
-<Month {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} {dateFormat} on:dateFormatChange={onDateFormatChange} />
-{:else if calendarOption === 'multiple months'}
-<MultipleMonths {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} {dateFormat} on:dateFormatChange={onDateFormatChange} />
-{:else}
-<Year {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} {dateFormat} on:dateFormatChange={onDateFormatChange} />
-{/if}
+    <h4 class="mb-4">I want to generate...</h4>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item" on:click={() => onCalendarOptionChange('month')}>
+            <span class={`nav-link ${calendarOption === 'month' ? 'active' : ''}`}>a month</span>
+        </li>
+        <li class="nav-item" on:click={() => onCalendarOptionChange('multiple months')}>
+            <span class={`nav-link ${calendarOption === 'multiple months' ? 'active' : ''}`}>multiple months</span>
+        </li>
+        <li class="nav-item" on:click={() => onCalendarOptionChange('year')}>
+            <span class={`nav-link ${calendarOption === 'year' ? 'active' : ''}`}>a year</span>
+        </li>
+    </ul>
+
+    <div class="row">
+        {#if calendarOption === 'month'}
+        <Month {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} {dateFormat} on:dateFormatChange={onDateFormatChange} />
+        {:else if calendarOption === 'multiple months'}
+        <MultipleMonths {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} {dateFormat} on:dateFormatChange={onDateFormatChange} />
+        {:else}
+        <Year {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} {dateFormat} on:dateFormatChange={onDateFormatChange} />
+        {/if}
+    </div>
+
+</div>
 
 <style>
-    
+    .nav-item {
+        cursor: pointer;
+    }
 </style>

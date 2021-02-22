@@ -2,6 +2,8 @@
     import { createEventDispatcher } from "svelte"
     import { addMonths, isBefore, isSameMonth } from 'date-fns'
     import { copyToClipboard, buildCalendarMonths } from '../helpers.ts'
+    import CalendarCss from './CalendarCss.svelte'
+    import Output from './Output.svelte'
     import FirstDayOfTheWeek from './FirstDayOfTheWeek.svelte'
     import DateFormat from './DateFormat.svelte'
 
@@ -61,7 +63,7 @@
         updateCalendarHtml()
     }
 
-    const copy = () => {
+    const onCopyButtonClick = () => {
         if (startBeforeOrEqualEnd(startDate, endDate)) {
             copyToClipboard(buildCalendarMonths(startDate, endDate, dateFormat, firstDayOfTheWeek))
         } else {
@@ -71,18 +73,60 @@
     
 </script>
 
-<FirstDayOfTheWeek {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} />
+<div class="col-xs-12 col-md-6">
 
-<DateFormat {dateFormat} on:dateFormatChange={onDateFormatChange} />
+    <form class="my-3 mx-3">
 
-Start date:
-<input bind:value={startMonth} type=number min=1 max=12 on:change={onStartMonthChange} />
-<input bind:value={startYear} type=number min=1971 max=2050 on:change={onStartYearChange} />
+        <div class="row">
 
-End date:
-<input bind:value={endMonth} type=number min=1 max=12 on:change={onEndMonthChange} />
-<input bind:value={endYear} type=number min=1971 max=2050 on:change={onEndYearChange} />
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="start-month" class="col-form-label">Start date:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input id="start-month" class="form-control" bind:value={startMonth} type=number min=1 max=12 on:change={onStartMonthChange}>
+                    </div>
+                    <div class="col-auto">
+                        <input id="start-year" class="form-control" bind:value={startYear} type=number min=1971 max=2050 on:change={onStartYearChange}>
+                    </div>
+                </div>
+            </div>
 
-<code>{@html calendarHtml}</code>
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <FirstDayOfTheWeek {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} />
+            </div>
 
-<button on:click={copy}>Copy</button>
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <div class="row g-2 align-items-center">
+                    <div class="col-auto">
+                        <label for="end-month" class="col-form-label">End date:</label>
+                    </div>
+                    <div class="col-auto">
+                        <input id="end-month" class="form-control" bind:value={endMonth} type=number min=1 max=12 on:change={onEndMonthChange}>
+                    </div>
+                    <div class="col-auto">
+                        <input id="end-year" class="form-control" bind:value={endYear} type=number min=1971 max=2050 on:change={onEndYearChange}>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
+                <DateFormat {dateFormat} on:dateFormatChange={onDateFormatChange} />
+            </div>
+
+        </div>
+
+    </form>
+
+    <hr>
+
+    <CalendarCss />
+
+</div>
+
+<div class="col-xs-12 col-md-6">
+
+    <Output {calendarHtml} on:click={onCopyButtonClick} />
+
+</div>
