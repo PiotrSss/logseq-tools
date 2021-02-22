@@ -6,8 +6,9 @@
     import Output from './Output.svelte'
     import FirstDayOfTheWeek from './FirstDayOfTheWeek.svelte'
     import DateFormat from './DateFormat.svelte'
+    import LocaleSelector from './LocaleSelector.svelte'
 
-    export let dateFormat, firstDayOfTheWeek
+    export let dateFormat, firstDayOfTheWeek, locale
     const dispatch = createEventDispatcher()
 
     const today = new Date()
@@ -24,10 +25,10 @@
 
     const startBeforeOrEqualEnd = (startDate, endDate) => isBefore(startDate, endDate) || isSameMonth(startDate, endDate)
 
-    let calendarHtml = buildCalendarMonths(startDate, endDate, dateFormat, firstDayOfTheWeek)
+    let calendarHtml = buildCalendarMonths(startDate, endDate, dateFormat, firstDayOfTheWeek, locale)
     const updateCalendarHtml = () => {
         if (startBeforeOrEqualEnd(startDate, endDate)) {
-            calendarHtml = buildCalendarMonths(startDate, endDate, dateFormat, firstDayOfTheWeek)
+            calendarHtml = buildCalendarMonths(startDate, endDate, dateFormat, firstDayOfTheWeek, locale)
         } else {
             calendarHtml = `<span class="validation-error">Start date after end date - are you sure? :)</span>`
         }
@@ -63,9 +64,15 @@
         updateCalendarHtml()
     }
 
+    const onLocaleChange = (event) => {
+        locale = event.detail.locale
+		dispatch("localeChange", { locale })
+        updateCalendarHtml()
+	}
+
     const onCopyButtonClick = () => {
         if (startBeforeOrEqualEnd(startDate, endDate)) {
-            copyToClipboard(buildCalendarMonths(startDate, endDate, dateFormat, firstDayOfTheWeek))
+            copyToClipboard(buildCalendarMonths(startDate, endDate, dateFormat, firstDayOfTheWeek, locale))
         } else {
             alert('Start date after end date - are you sure? :)')
         }
@@ -75,45 +82,39 @@
 
 <div class="col-xs-12 col-md-6">
 
-    <form class="my-3 mx-3">
+    <form class="mt-1 mb-3 mx-3">
 
         <div class="row">
 
-            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
-                <div class="row g-2 align-items-center">
-                    <div class="col-auto">
-                        <label for="start-month" class="col-form-label">Start date:</label>
-                    </div>
-                    <div class="col-auto">
-                        <input id="start-month" class="form-control" bind:value={startMonth} type=number min=1 max=12 on:change={onStartMonthChange}>
-                    </div>
-                    <div class="col-auto">
-                        <input id="start-year" class="form-control" bind:value={startYear} type=number min=1971 max=2050 on:change={onStartYearChange}>
-                    </div>
+            <div class="row g-2 align-items-center">
+                <div class="col-auto">
+                    <label for="start-month" class="col-form-label">Start date:</label>
+                </div>
+                <div class="col-auto">
+                    <input id="start-month" class="form-control" bind:value={startMonth} type=number min=1 max=12 on:change={onStartMonthChange}>
+                </div>
+                <div class="col-auto">
+                    <input id="start-year" class="form-control" bind:value={startYear} type=number min=1971 max=2050 on:change={onStartYearChange}>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
-                <FirstDayOfTheWeek {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} />
-            </div>
-
-            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
-                <div class="row g-2 align-items-center">
-                    <div class="col-auto">
-                        <label for="end-month" class="col-form-label">End date:</label>
-                    </div>
-                    <div class="col-auto">
-                        <input id="end-month" class="form-control" bind:value={endMonth} type=number min=1 max=12 on:change={onEndMonthChange}>
-                    </div>
-                    <div class="col-auto">
-                        <input id="end-year" class="form-control" bind:value={endYear} type=number min=1971 max=2050 on:change={onEndYearChange}>
-                    </div>
+            <div class="row g-2 align-items-center">
+                <div class="col-auto">
+                    <label for="end-month" class="col-form-label">End date:</label>
+                </div>
+                <div class="col-auto">
+                    <input id="end-month" class="form-control" bind:value={endMonth} type=number min=1 max=12 on:change={onEndMonthChange}>
+                </div>
+                <div class="col-auto">
+                    <input id="end-year" class="form-control" bind:value={endYear} type=number min=1971 max=2050 on:change={onEndYearChange}>
                 </div>
             </div>
 
-            <div class="col-xs-12 col-sm-12 col-lg-6 my-2">
-                <DateFormat {dateFormat} on:dateFormatChange={onDateFormatChange} />
-            </div>
+            <FirstDayOfTheWeek {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} />
+            
+            <DateFormat {dateFormat} on:dateFormatChange={onDateFormatChange} />
+            
+            <LocaleSelector {locale} on:localeChange={onLocaleChange} />
 
         </div>
 

@@ -20,6 +20,12 @@
         dateFormat = event.detail.dateFormat
         localStorage.setItem('dateFormat', dateFormat)
     }
+    
+    let locale = localStorage.getItem('locale') ? localStorage.getItem('locale') : 'en-US'
+    const onLocaleChange = (event) => {
+        locale = event.detail.locale
+        localStorage.setItem('locale', locale)
+    }
 
 </script>
 
@@ -41,11 +47,32 @@
 
     <div class="row">
         {#if calendarOption === 'month'}
-        <Month {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} {dateFormat} on:dateFormatChange={onDateFormatChange} />
+        <Month 
+            {firstDayOfTheWeek} 
+            on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} 
+            {dateFormat} 
+            on:dateFormatChange={onDateFormatChange}
+            {locale}
+            on:localeChange={onLocaleChange}
+        />
         {:else if calendarOption === 'multiple months'}
-        <MultipleMonths {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} {dateFormat} on:dateFormatChange={onDateFormatChange} />
+        <MultipleMonths 
+            {firstDayOfTheWeek} 
+            on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} 
+            {dateFormat} 
+            on:dateFormatChange={onDateFormatChange}
+            {locale}
+            on:localeChange={onLocaleChange}
+        />
         {:else}
-        <Year {firstDayOfTheWeek} on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} {dateFormat} on:dateFormatChange={onDateFormatChange} />
+        <Year 
+            {firstDayOfTheWeek} 
+            on:firstDayOfTheWeekChange={onFirstDayOfTheWeekChange} 
+            {dateFormat} 
+            on:dateFormatChange={onDateFormatChange}
+            {locale}
+            on:localeChange={onLocaleChange}
+        />
         {/if}
     </div>
 

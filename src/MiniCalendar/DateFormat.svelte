@@ -21,7 +21,7 @@
 
 <div class="row g-2 align-items-center">
     <div class="col-auto">
-        <label for="date-format" class="col-form-label">Format</label>
+        <label for="date-format" class="col-form-label">Daily note title format</label>
     </div>
     <div class="col-auto">
         <input class="form-control" id="date-format" bind:value={dateFormat} />

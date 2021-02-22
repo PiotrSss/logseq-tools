@@ -9,7 +9,7 @@
 <div class="container">
 	<header>
 		<h1><a href="/">Logseq Tools</a></h1>
-		<p>A couple of (hopefully!) useful utilities to help us work in <a href="https://logseq.com">Logseq</a></p>
+		<p>A couple of (hopefully!) useful utilities to help us to work with <a href="https://logseq.com">Logseq</a></p>
 	</header>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
