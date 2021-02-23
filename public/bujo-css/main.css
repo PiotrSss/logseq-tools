@@ -118,6 +118,7 @@ a[title="Go Forward"] {
     padding: 5px 6px;
 }
 
+
 /* vertical lines */
 
 .block-children {
@@ -236,4 +237,69 @@ h1.title {
 
 a {
     transition: .3s;
+}
+
+
+/* Calendar */
+
+#contents span.opacity-50 {
+    opacity: 0;
+}
+
+#contents .logseq-tools-calendar h2 {
+    margin-top: -25px;
+}
+
+.logseq-tools-multiple-calendars {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 15px;
+}
+
+:not(#contents) .logseq-tools-multiple-calendars .logseq-tools-calendar {
+    flex: 0 50%;
+    box-sizing: border-box;
+    padding: 0 15px;
+}
+
+.logseq-tools-calendar tr {
+    background: none !important;
+}
+
+.logseq-tools-calendar th,
+.logseq-tools-calendar td,
+.logseq-tools-calendar tr {
+    border: none;
+}
+
+.logseq-tools-calendar th,
+.logseq-tools-calendar td {
+    text-align: center;
+}
+
+
+/* Calendar - pages from other months */
+
+.logseq-tools-calendar .outofmonth {
+    opacity: .3;
+}
+
+.logseq-tools-calendar .today {
+    font-weight: 900;
+    color: var(--ls-link-text-color);
+}
+
+.logseq-tools-calendar .page-exists {
+    border-bottom: 1px solid var(--ls-link-ref-text-color);
+}
+
+.logseq-tools-calendar .today.page-exists {
+    border-bottom-color: var(--ls-link-text-color);
+}
+
+
+/* Calendar - if you want to add different styling for pages that not exists yet */
+
+.logseq-tools-calendar .page-ref:not(.page-exists):not(.today) {
+    /* color: violet; */
 }
