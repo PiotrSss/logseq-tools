@@ -158,7 +158,7 @@
     <div class="row">
 
         <div class="col-xs-12 col-sm-12 col-md-6">
-            <p>There are two ways to get these themes. You can either copy entire styles to your custom css file, or copy only links to styles. Use first option if you're sometimes offline and you want to have these themes always available. Use the second if you're always online - you'll get automatically all updates and fixes.</p>
+            <p>There are two ways to get these themes. You can either copy entire code to your custom css file, or copy only links to import the data. Use first option if you're sometimes offline and you want to have these themes always available. Use the second one if you're always/mostly online - it's better, because you'll get automatically all updates and fixes.</p>
 
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="offlineOrOnline" id="offline" bind:group={offlineOrOnline} value={'offline'} on:change={buildCss}>
