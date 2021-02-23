@@ -62,7 +62,9 @@ export const buildCalendarMonths = (startDate, endDate, dateFormat, firstDayOfTh
     return `<div class="logseq-tools-multiple-calendars">${result}</div>`
 }
 
+export const baseUrl = location.origin.includes('localhost') ? 'http://localhost:5000/' : 'https://piotrsss.github.io/logseq-tools/public/'
+
 export const loadCss = async (url, callback) => {
-    const response = await fetch(url);
+    const response = await fetch(baseUrl + url);
     callback(await response.text())
 }

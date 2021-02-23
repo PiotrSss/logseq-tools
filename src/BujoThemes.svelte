@@ -1,7 +1,6 @@
 <script>
     import { onMount } from 'svelte'
-    import { copyToClipboard, loadCss } from './helpers.ts'
-    
+    import { copyToClipboard, loadCss, baseUrl } from './helpers.ts'
     
     let mainCss, lightWhiteCss, lightSepiaCss, darkBlackCss, darkCoffeeCss, lightWhiteDotsCss, lightSepiaDotsCss, darkBlackDotsCss, darkCoffeeDotsCss
     loadCss('bujo-css/main.css', (data) => mainCss = data)
@@ -37,25 +36,25 @@
 
     let css = ''
     const buildCss = () => {
-        css = offlineOrOnline === 'online' ? `@import url('${location.origin}/bujo-css/main.css');\n` : mainCss + '\n\n\n'
+        css = offlineOrOnline === 'online' ? `@import url('${baseUrl}bujo-css/main.css');\n` : mainCss + '\n\n\n'
         switch (dark) {
             case 'black':
-                css += offlineOrOnline === 'online' ? `@import url('${location.origin}/bujo-css/dark-black.css');\n` : darkBlackCss + '\n\n\n'
-                darkDots ? css += offlineOrOnline === 'online' ? `@import url('${location.origin}/bujo-css/dark-black-dots.css');\n` : darkBlackDotsCss + '\n\n\n' : ''
+                css += offlineOrOnline === 'online' ? `@import url('${baseUrl}bujo-css/dark-black.css');\n` : darkBlackCss + '\n\n\n'
+                darkDots ? css += offlineOrOnline === 'online' ? `@import url('${baseUrl}bujo-css/dark-black-dots.css');\n` : darkBlackDotsCss + '\n\n\n' : ''
                 break;
             case 'coffee':
-                css += offlineOrOnline === 'online' ? `@import url('${location.origin}/bujo-css/dark-coffee.css');\n` : darkCoffeeCss + '\n\n\n'
-                darkDots ? css += offlineOrOnline === 'online' ? `@import url('${location.origin}/bujo-css/dark-coffee-dots.css');\n` : darkCoffeeDotsCss + '\n\n\n' : ''
+                css += offlineOrOnline === 'online' ? `@import url('${baseUrl}bujo-css/dark-coffee.css');\n` : darkCoffeeCss + '\n\n\n'
+                darkDots ? css += offlineOrOnline === 'online' ? `@import url('${baseUrl}bujo-css/dark-coffee-dots.css');\n` : darkCoffeeDotsCss + '\n\n\n' : ''
                 break;
         }
         switch (light) {
             case 'white':
-                css += offlineOrOnline === 'online' ? `@import url('${location.origin}/bujo-css/light-white.css');\n` : lightWhiteCss + '\n\n\n'
-                lightDots ? css += offlineOrOnline === 'online' ? `@import url('${location.origin}/bujo-css/light-white-dots.css');\n` : lightWhiteDotsCss + '\n\n\n' : ''
+                css += offlineOrOnline === 'online' ? `@import url('${baseUrl}bujo-css/light-white.css');\n` : lightWhiteCss + '\n\n\n'
+                lightDots ? css += offlineOrOnline === 'online' ? `@import url('${baseUrl}bujo-css/light-white-dots.css');\n` : lightWhiteDotsCss + '\n\n\n' : ''
                 break;
             case 'sepia':
-                css += offlineOrOnline === 'online' ? `@import url('${location.origin}/bujo-css/light-sepia.css');\n` : lightSepiaCss + '\n\n\n'
-                lightDots ? css += offlineOrOnline === 'online' ? `@import url('${location.origin}/bujo-css/light-sepia-dots.css');\n` : lightSepiaDotsCss + '\n\n\n' : ''
+                css += offlineOrOnline === 'online' ? `@import url('${baseUrl}bujo-css/light-sepia.css');\n` : lightSepiaCss + '\n\n\n'
+                lightDots ? css += offlineOrOnline === 'online' ? `@import url('${baseUrl}bujo-css/light-sepia-dots.css');\n` : lightSepiaDotsCss + '\n\n\n' : ''
                 break;
         }        
         return css
