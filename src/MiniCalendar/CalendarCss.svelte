@@ -6,17 +6,17 @@
     opacity: 0;
 }
 
-#contents .logseq-tools-calendar h2 {
+#contents .logseq-tools-calendar:first-child h2 {
     margin-top: -25px;
 }
 
-.logseq-tools-multiple-calendars {
+.cp__sidebar-main-content .logseq-tools-multiple-calendars {
     display: flex;
     flex-wrap: wrap;
     padding: 0 15px;
 }
 
-:not(#contents) .logseq-tools-multiple-calendars .logseq-tools-calendar {
+.cp__sidebar-main-content .logseq-tools-multiple-calendars .logseq-tools-calendar {
     flex: 0 50%;
     box-sizing: border-box;
     padding: 0 15px;
@@ -38,7 +38,7 @@
 }
 
 
-/* pages from other months */
+/* Calendar - pages from other months */
 
 .logseq-tools-calendar .outofmonth {
     opacity: .3;
@@ -58,7 +58,7 @@
 }
 
 
-/* if you want to add different styling for pages that not exists yet */
+/* Calendar - if you want to add different styling for pages that not exists yet */
 
 .logseq-tools-calendar .page-ref:not(.page-exists):not(.today) {
     /* color: violet; */
