@@ -4,6 +4,7 @@
 	import MiniCalendar from './MiniCalendar.svelte'
 	import BujoThemes from './BujoThemes.svelte'
 	// router.mode.memory()
+	router.mode.hash()
 </script>
 
 
