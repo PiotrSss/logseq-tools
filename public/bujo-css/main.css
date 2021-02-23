@@ -232,11 +232,12 @@ a {
     opacity: 0;
 }
 
-#contents .logseq-tools-calendar h2 {
+#contents .logseq-tools-multiple-calendars,
+#contents :not(.logseq-tools-multiple-calendars) .logseq-tools-calendar h2 {
     margin-top: -25px;
 }
 
-.logseq-tools-multiple-calendars {
+:not(#contents) .logseq-tools-multiple-calendars {
     display: flex;
     flex-wrap: wrap;
     padding: 0 15px;
