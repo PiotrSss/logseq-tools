@@ -54,6 +54,16 @@ body .bg-dark {
     color: red;
 }
 
+.modal-content.modal-theme-preview {
+    border: none;
+    border-radius: 30px;
+    background: none;
+}
+
+.modal-theme-preview img {
+    border-radius: 20px;
+}
+
 @media (min-width: 1200px) {
     .mini-calendar-output-wrapper .logseq-tools-multiple-calendars {
         display: grid;

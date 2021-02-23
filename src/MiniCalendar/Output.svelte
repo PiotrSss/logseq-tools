@@ -30,7 +30,6 @@
 
 <style>
     .mini-calendar-output-wrapper {
-        /* border: 1px solid #f7f7f7; */
         background: #f7f7f7;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;

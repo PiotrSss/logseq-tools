@@ -1,0 +1,7 @@
+/* dotted bg */
+
+.dark-theme #app-container {
+    background-image: radial-gradient(#423019 5%, #211c1b 5%);
+    background-position: 0 0;
+    background-size: 25px 25px;
+}

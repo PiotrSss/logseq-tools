@@ -23,7 +23,7 @@ export const copyToClipboard = (text) => {
         }
     }
 }
-// EEE
+
 export const buildCalendarMonth = (month, year, dateFormat, firstDayOfTheWeek, locale) => {
     let weeksInMonth = getWeeksInMonth(new Date(year, month), { weekStartsOn: firstDayOfTheWeek })
     let currentDay = startOfWeek(new Date(year, month), { weekStartsOn: firstDayOfTheWeek })
@@ -60,4 +60,9 @@ export const buildCalendarMonths = (startDate, endDate, dateFormat, firstDayOfTh
         startDate = addMonths(startDate, 1)
     }
     return `<div class="logseq-tools-multiple-calendars">${result}</div>`
+}
+
+export const loadCss = async (url, callback) => {
+    const response = await fetch(url);
+    callback(await response.text())
 }

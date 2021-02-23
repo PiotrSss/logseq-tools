@@ -2,6 +2,7 @@
 	import {Route,active,router} from 'tinro'
 	import Transition from './Transition.svelte'
 	import MiniCalendar from './MiniCalendar.svelte'
+	import BujoThemes from './BujoThemes.svelte'
 	// router.mode.memory()
 </script>
 
@@ -22,10 +23,10 @@
 						<a class="nav-link" aria-current="page" href="/mini-calendar" use:active>Mini Calendar</a>
 					</li>
 					<li class="nav-item mx-2">
-						<a class="nav-link" href="/bujo-theme" use:active>BuJo Themes</a>
+						<a class="nav-link" href="/bujo-themes" use:active>BuJo Themes</a>
 					</li>
 					<li class="nav-item mx-2">
-						<a class="nav-link" href="/clean-theme" use:active>Clean Themes</a>
+						<a class="nav-link" href="/clean-themes" use:active>Clean Themes</a>
 					</li>
 				</ul>
 			</div>
@@ -39,11 +40,11 @@
 			<Route path="/mini-calendar">
 				<MiniCalendar />
 			</Route>
-			<Route path="/bujo-theme">
-				BuJo
+			<Route path="/bujo-themes">
+				<BujoThemes />
 			</Route>
-			<Route path="/clean-theme">
-				Clean
+			<Route path="/clean-themes">
+				Soon ;)
 			</Route>
 		</Transition>
 	</main>
