@@ -60,11 +60,7 @@
 .logseq-tools-calendar .today.page-exists {
     border-bottom-color: var(--ls-link-text-color);
 }
-*/
 
-/* if you want to add different styling for pages that not exists yet */
-
-/*
 .logseq-tools-calendar .page-ref:not(.page-exists):not(.today) {
     color: violet;
 }
