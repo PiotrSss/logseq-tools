@@ -44,6 +44,10 @@
     opacity: .3;
 }
 
+/* If you're using Lupin.
+   otherwise you can remove this: */
+
+/* 
 .logseq-tools-calendar .today {
     font-weight: 900;
     color: var(--ls-link-text-color);
@@ -56,13 +60,15 @@
 .logseq-tools-calendar .today.page-exists {
     border-bottom-color: var(--ls-link-text-color);
 }
+*/
 
+/* if you want to add different styling for pages that not exists yet */
 
-/* Calendar - if you want to add different styling for pages that not exists yet */
-
+/*
 .logseq-tools-calendar .page-ref:not(.page-exists):not(.today) {
-    /* color: violet; */
+    color: violet;
 }
+*/
     `
 
     let copied = false
