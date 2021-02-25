@@ -35,7 +35,6 @@
 .logseq-tools-calendar .outofmonth {
     opacity: .3;
 }
-*/
     `
 
     let copied = false
