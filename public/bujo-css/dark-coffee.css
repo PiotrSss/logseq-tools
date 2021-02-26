@@ -46,8 +46,8 @@ html[data-theme=dark] {
     --ls-scrollbar-background-color: rgba(67, 30, 41, 0.9);
     --ls-scrollbar-thumb-hover-color: rgba(255, 255, 255, 0.2);
     --ls-head-text-color: #9e836d;
-    --ls-icon-color: var(--ls-quaternary-background-color);
-    --ls-search-icon-color: var(--ls-quaternary-background-color);
+    --ls-icon-color: #635553;
+    --ls-search-icon-color: #635553;
     --ls-a-chosen-bg: var(--ls-secondary-background-color);
     --ls-right-sidebar-code-bg-color: #3c041f;
     --color-level-1: var(--ls-secondary-background-color);
